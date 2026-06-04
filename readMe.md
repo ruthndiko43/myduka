@@ -41,4 +41,47 @@ our data format - a list of tuples
 Task
 
 insert two record of sales in sql shell and use psycopg2 to display them in your terminal
+
 brush up on the following concepts: -> SQL ( sql queries , joins , aggregate functions , group by) -> Python ( data types, lists and tuples , for loops, if statements & functions) w3schools & geeks for geeks
+
+Inserting data using psycopg2 insert into table_name(columns....)values(...) conn.commit() - a function meant to commit / save db changes
+
+Optimize our queries in psycopg2 using functions -> Functions : block of reusable code meant to perform a specifc task
+
+why use functions? 1.Reusability - use parameters parameters & arguments 2.Modularity - breaking code into smaller manageable pieces 3.Better readability 4.Code Organization 5.Scalability 6.Better debugging
+
+transactions - more than one query executing as a single unit of work
+
+sql injection select email,password from users where password = 1 OR 1 == 1 1 OR 1 == 1
+
+Task 1.Using functions write code to: -> get_stock() -> insert sales() -> insert_stock()
+
+2.Write sql queries that fetch the following data: -> sales_per_day -> profit_per_day -> sales_per_product -> profit_per_product
+
+
+15000 * 3 = 45000 (quantity , selling_price , date)
+
+sales per day select date(sales.created_at) as date, sum(sales.quantity * products.selling_price) as total_sales from sales join products on products.id = sales.pid group by date;
+
+profit per day select date(sales.created_at) as date, sum(sales.quantity *( products.selling_price - products.buying_price)) as total_sales from sales join products on products.id = sales.pid group by date;
+
+sales per product select products.name as p_name , sum(sales.quantity * products.selling_price) as total_sales from products join sales on sales.pid = products.id group by p_name;
+
+profit per product select products.name as p_name , sum(sales.quantity *( products.selling_price - products.buying_price)) as total_sales from products join sales on sales.pid = products.id group by p_name;
+
+Multiline strings ->Enable you to have a string that spans more than one line -> it uses tripple opening & closing brackets 
+
+
+
+class:student                                                         Identity:student
+State : Name ,Age, Course, Gender Year of Study
+Behavior :Study ,Attend,class ,Take exam           
+
+class:horse                                                           identity:horse
+State: Name Age Color Breed Weight
+Behavior : Run Eat Sleep Jump
+
+class-car
+identity-car
+state-color,brand,model
+behaviour-start,stop,brake
