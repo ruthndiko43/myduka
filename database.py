@@ -17,6 +17,11 @@ def get_sales():
     sales_data = cur.fetchall()
     return sales_data
 
+def get_stock():
+    cur.execute("select * from stock")
+    stock_data = cur.fetchall()
+    return stock_data
+
 
 def get_data(table):
     cur.execute(f"select * from {table}")
@@ -40,11 +45,18 @@ def insert_products2(values):
     conn.commit()
 
 
+def insert_sales(values):
+    cur.execute("insert into sales(pid,quantity)values(%s,%s)", values)
+    conn.commit()
+
+
+def insert_stock(values):
+    cur.execute("insert into stock(pid,stock_quantity)values(%s,%s)", values)
+    conn.commit()
+
 
 product3 = ('laptop',40000,50000)
 insert_products2(product3)
-
-print(products_data)
 
 
 def sales_per_day():
@@ -65,3 +77,22 @@ def profit_per_day():
     """)
     daily_profit = cur.fetchall()
     return daily_profit
+
+
+
+def sales_per_product():
+    cur.execute("""
+        select products.name as p_name , sum(sales.quantity * products.selling_price)  as total_sales
+        from products join sales on sales.pid = products.id group by p_name;
+    """)
+    product_sales = cur.fetchall()
+    return product_sales
+
+
+def profit_per_product():
+    cur.execute("""
+        select products.name as p_name , sum(sales.quantity *( products.selling_price - 
+        products.buying_price))  as total_sales from products join sales on sales.pid = products.id group by p_name;
+    """)
+    product_profit = cur.fetchall()
+    return product_prof

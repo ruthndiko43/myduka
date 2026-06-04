@@ -85,3 +85,30 @@ class-car
 identity-car
 state-color,brand,model
 behaviour-start,stop,brake
+
+
+OBJECT ORIENTED PROGRAMMING - OOP -> Broadly we have 2 categories of data types: 1.Inbuilt data types -> data types that come with the programming language -> str, int, float ,bool , lists , tuples... 2.Custom data types -> data types created by the programmer -> this is useful in representing data outside the predefined data types -> This is enabled by OOP (use of classes and objects)
+
+OOP - a programming paradigm where we build programs around classes and objects Class - a template / blueprint for creating objects Object - an instance of a class
+
+Any class has the following 3 things: 1.Identity - every class has a unique name to identify it e.g class Laptop, class Dog 2.State : variables / data / attributes contained in a class =>variables : what does a class have? 3.Behaviour : what can a class do? -> enabled by functions functions inside a class are called methods
+
+class Laptop: identity : Laptop state: ram , processors ,e.t.c behaviour : power on, power off, code, create files
+
+generate identity,state and behaviour for the following classes: 1.Horse 2.Student 3.Car
+
+class Student: identity : Student state: name , student_no , course , age behaviour : learn, sleep, eat, do_exams
+
+class Horse : identity : Horse state : name, age , breed , can_race behaviour: run , race, sleep, eat
+
+Method - any function inside a class Constructor - a special method that is automatically called when creating an object. It is used to initialize objects with data ->def init()
+
+dunder methods - double underscore methods
+
+self - refers to the object being created
+
+Behaviour - what can a class do? -> defined by functions(methods)
+
+TASK 1.Create a class called BankAccount with the attributes: - account number , balance , owner name , date opened
+2.Add some behaviour to the above class using the methods: - deposit() - withdraw() - check_balance() -display_info() -close_account()
+3.Create two BankAccount objects that can deposit , withdraw , check balance display info and close account
