@@ -112,3 +112,16 @@ Behaviour - what can a class do? -> defined by functions(methods)
 TASK 1.Create a class called BankAccount with the attributes: - account number , balance , owner name , date opened
 2.Add some behaviour to the above class using the methods: - deposit() - withdraw() - check_balance() -display_info() -close_account()
 3.Create two BankAccount objects that can deposit , withdraw , check balance display info and close account
+
+#INTRODUCTION TO FLASK
+#internet
+#www
+#server
+#domain
+#ip address
+#url
+#hosting
+
+#framework vs library
+
+puchase dormain name,then attache to ip address and request for a ssl certificate using command..
