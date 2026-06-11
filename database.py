@@ -1,7 +1,7 @@
 import psycopg2
 
 #establishing a connection to a postgres db
-conn = psycopg2.connect(host='localhost',port=5432,user='postgres',password='6979',dbname='myduka')
+conn = psycopg2.connect(host='localhost',port=5432,user='postgres',password='1234',dbname='myduka')
 
 #cur object
 cur = conn.cursor()

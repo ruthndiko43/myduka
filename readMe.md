@@ -113,6 +113,10 @@ TASK 1.Create a class called BankAccount with the attributes: - account number ,
 2.Add some behaviour to the above class using the methods: - deposit() - withdraw() - check_balance() -display_info() -close_account()
 3.Create two BankAccount objects that can deposit , withdraw , check balance display info and close account
 
+def close_account(self,account): del account print(f'account {account} was successfuly deleted')
+
+Inheritance - method overriding Abstraction Encapsulation Polymorphism - method overloading ----------geeksforgeeks----------
+
 #INTRODUCTION TO FLASK
 #internet
 #www
@@ -125,3 +129,76 @@ TASK 1.Create a class called BankAccount with the attributes: - account number ,
 #framework vs library
 
 puchase dormain name,then attache to ip address and request for a ssl certificate using command..
+
+Introduction to Flask Internet - global connection between various devices that allows communication between them www - a service that allows you to connect to the internet via the browser server - a device connected to the internet meant to store and share information domain - a user friendly name for an ip address ip address - a number used to uniquely dentify a device on a network -> ipv4 and ipv6 url - the full address used to access a web application e.g https://meet.google.com/dsh-idtb-oqb hosting - uploading your application resources on a server to make it avaiable and visible to everyone
+
+plan -> requirements gathering -> design -> buiding (coding) -> testing -> deployment -> maintenance
+
+framework vs library
+
+192.108.220.220 -> www.google.com
+
+Parts of a URL 1.Protocol - tells the browser how to communicate (http or https) http - hyper text transfer protocol - sends data as raw text https - hyper text transfer protocol secure - data encryption - ssl certificate 2.Domain name 3.Path - specific resource to be accessed in an application 4.Port
+
+Framework vs Library -> The concept of building a house
+
+Scenario 1 ---> Framework David intends to build a house. he recognizes that he isnt a construction expert. he decides to enlist the help of construction professionals (architects , engineers, construction workers). David has to trust the judgement of these professionals. The process becomes much easier but it also becomes less flexible and expensive.
+
+Scenario 2 --Library Mitchelle also trying to build a house. She decides she doesnt need the help of any professionals and does it herself.The process becomes much harder but flexible
+
+framework - a prebuilt structure of code and tools meant to help developers build apps by not having to code everything from scratch -Helps you build apps quicker and better but it has very strict guidelines
+
+Examples 1.Python -> Flask, FastAPI , Django 2.Java -> Spring 3.C# -> .NET 4.JavaScript -> React, Angular, Vue , Svelte 5.Golang -> Chi, Gin 6.NodeJS -> Express 7.Ruby -> Ruby on Rails 8.PHP -> Laravel
+
+FLASK -> A Python framework used to build web applications
+
+Routing in FLASK -> A mechanism that maps / connects URLS to Python functions. It is a system for resource navigation
+
+To execute routing in Flask we use a decorator function called @app.route() decorator function - a function that modifies or determines the behaviour of another function .In Python decorator functions have the '@' prefix @app.route() can take some parameters: 1.Rule / Path -> the specific resource to be accessed e..g /login /register /products 2.Method
+
+@app.route('/') --> decorator function def home(): --> view function return "Hello World" --> resource / data to be returned
+
+Note -> View functions cannot have the same names
+
+app.run() - start your server and run your application
+
+Returning full html pages with Flask -> to return html files we use a function called render_template() imported from flask -> you need the following project structure
+
+Myduka -> static : contains all static files e.g. css , images , videos , favicons -> templates : contains all html files -> a single html file is called a template Template Inheritance -> reduces redundancy in page creation by having one base file with all common features of all pages then subsequently have all other pages inherit from it -> Inheritance is enabled by blocks
+
+{% block title %} defines the unique title of each page {% endblock%}
+
+{% block content %} defines the unique content of each page {% endblock %}
+
+displaying data in flask -> to display data from Python in html we use Jinja: Jinja - is a templating engine integrated with Flask to render dynamic html pages -> It is simply syntax -> How to use Jinja Syntax: 1.When using Jinja to display variables / data ===> {{}} 2.When using control structures ===> {% %}
+
+Control Structures - building blocks of a programming langauge 1.Sequence - a program executes top to bottom left to right 2.Iteration - looping 3.Selection - decision making (conditional statements)
+
+Task -> Display sales and stock data using datatables
+
+About
+No description, website, or topics provided.
+Resources
+ Readme
+ Activity
+Stars
+ 0 stars
+Watchers
+ 0 watching
+Forks
+ 0 forks
+Report repository
+Releases
+No releases published
+Packages
+No packages published
+Contributors
+1
+@l-tting
+l-tting Letting K.
+Languages
+HTML
+51.3%
+ 
+Python
+48.7%

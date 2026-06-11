@@ -1,16 +1,19 @@
 from flask import Flask,render_template
+from database import get_products
 
 #flask instance
 app = Flask(__name__)
 
-@app.route('/index')
-def index():
-    return render_template("index.html")
+@app.route('/')
+def home():
+    number = 100
+    return render_template("index.html",value = number)
 
 
-@app.route('/product')
+@app.route('/products')
 def products():
-    return render_template("product.html")
+    products_data = get_products()
+    return render_template("products.html",products_data=products_data)
 
 @app.route('/sales')
 def sales():
