@@ -36,8 +36,8 @@ def insert_products(values):
 product1 = ('shoes',2000,2500)
 product2 = ('phone',10000,15000)
 
-# insert_products(product1)
-# insert_products(product2)
+insert_products(product1)
+insert_products(product2)
 
 
 def insert_products2(values):
@@ -95,4 +95,14 @@ def profit_per_product():
         products.buying_price))  as total_sales from products join sales on sales.pid = products.id group by p_name;
     """)
     product_profit = cur.fetchall()
-    return product_prof
+    return product_profit
+
+
+def check_available_stock(pid):
+    cur.execute("select sum(stock.stock_quantity) from stock where pid = %s",(pid,))
+    total_stock = cur.fetchone()[0] or 0
+
+    cur.execute("select sum(sales.quantity) from sales where pid = %s",(pid,))
+    total_sold = cur.fetchone()[0] or 0
+
+    return total_stock - total_sold

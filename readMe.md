@@ -56,8 +56,7 @@ sql injection select email,password from users where password = 1 OR 1 == 1 1 OR
 
 Task 1.Using functions write code to: -> get_stock() -> insert sales() -> insert_stock()
 
-2.Write sql queries that fetch the following data: -> sales_per_day -> profit_per_day -> sales_per_product -> profit_per_product
-
+2.Write sql queries that fetch the following data: -> sales_per_day => sales , date sales = revenue -> profit_per_day -> sales_per_product -> profit_per_product
 
 15000 * 3 = 45000 (quantity , selling_price , date)
 
@@ -69,23 +68,7 @@ sales per product select products.name as p_name , sum(sales.quantity * products
 
 profit per product select products.name as p_name , sum(sales.quantity *( products.selling_price - products.buying_price)) as total_sales from products join sales on sales.pid = products.id group by p_name;
 
-Multiline strings ->Enable you to have a string that spans more than one line -> it uses tripple opening & closing brackets 
-
-
-
-class:student                                                         Identity:student
-State : Name ,Age, Course, Gender Year of Study
-Behavior :Study ,Attend,class ,Take exam           
-
-class:horse                                                           identity:horse
-State: Name Age Color Breed Weight
-Behavior : Run Eat Sleep Jump
-
-class-car
-identity-car
-state-color,brand,model
-behaviour-start,stop,brake
-
+Multiline strings ->Enable you to have a string that spans more than one line -> it uses tripple opening & closing brackets
 
 OBJECT ORIENTED PROGRAMMING - OOP -> Broadly we have 2 categories of data types: 1.Inbuilt data types -> data types that come with the programming language -> str, int, float ,bool , lists , tuples... 2.Custom data types -> data types created by the programmer -> this is useful in representing data outside the predefined data types -> This is enabled by OOP (use of classes and objects)
 
@@ -116,19 +99,6 @@ TASK 1.Create a class called BankAccount with the attributes: - account number ,
 def close_account(self,account): del account print(f'account {account} was successfuly deleted')
 
 Inheritance - method overriding Abstraction Encapsulation Polymorphism - method overloading ----------geeksforgeeks----------
-
-#INTRODUCTION TO FLASK
-#internet
-#www
-#server
-#domain
-#ip address
-#url
-#hosting
-
-#framework vs library
-
-puchase dormain name,then attache to ip address and request for a ssl certificate using command..
 
 Introduction to Flask Internet - global connection between various devices that allows communication between them www - a service that allows you to connect to the internet via the browser server - a device connected to the internet meant to store and share information domain - a user friendly name for an ip address ip address - a number used to uniquely dentify a device on a network -> ipv4 and ipv6 url - the full address used to access a web application e.g https://meet.google.com/dsh-idtb-oqb hosting - uploading your application resources on a server to make it avaiable and visible to everyone
 
@@ -176,29 +146,48 @@ Control Structures - building blocks of a programming langauge 1.Sequence - a pr
 
 Task -> Display sales and stock data using datatables
 
-About
-No description, website, or topics provided.
-Resources
- Readme
- Activity
-Stars
- 0 stars
-Watchers
- 0 watching
-Forks
- 0 forks
-Report repository
-Releases
-No releases published
-Packages
-No packages published
-Contributors
-1
-@l-tting
-l-tting Letting K.
-Languages
-HTML
-51.3%
- 
-Python
-48.7%
+Posting data in Flask Posting : move data from the client side to the server side
+
+Posting data workflow 1.A user is provided with a form to fill 2.User fills and submits the form 3.The form is submitted to a route in Flask for processing 4.Form data is then extracted using the request object Note -> data from the form is sent in key-value pair format *request object has 2 methods: => request.form : used to extract form data using its key => request.method : used by the server to determine what method has been used
+
+5.Process data and store it 6.Redirect the user redirect - take the user to another resource -> use the redirect() function which takes url_for() as an argument -> redirect(url_for(' name of the view function' ))
+
+form checklist 1.action attribute -> in what route is the form to be submitted e.g /add_products 2.method attribute method - determines what a server does with data / a resource 3.name attribute -> the key used by the server to extract form data 4.input type 5.button of type submit
+
+methods 1.GET - getting / retrieving data from a server e.g displaying products in an interface 2.POST -> sending data to a server from a client e.g. registering a user ,login , add products, making sales , sending tweets 3.PUT - update an existing resource / data e.g. changing product name , updating password 4.DELETE - getting rid of a resource e.g. deleting products, profile
+
+Note - data from the form is of type string
+
+p_name:"bread" b_price:55 s_price:60
+
+task =>Post stock and sales data using a form and two routes: /add_sales , /add_stock
+
+making purchases => add products -> name,bp,sp => add stock on existing products => making sales => reduce
+
+bread, 60,65 100 80 20 - remaining stock
+
+80
+
+flash notifications
+
+myduka=# select * from stock; id | pid | stock_quantity | created_at
+----+-----+----------------+---------------------------- 1 | 3 | 55| 2026-04-10 15:06:58.088418 1 | 3 | 50| 2026-04-10 15:06:58.088418
+
+total stock = 105
+
+[(105,)]
+
+myduka=# select * from sales; id | pid | quantity | created_at
+----+-----+----------+---------------------------- 3 | 3 | 50 | 2026-04-10 15:06:40.615398 4 | 3 | 20 | 2026-04-13 20:21:39.976895
+
+total sold = 70
+
+remaining = total stock per product - total sold per product
+
+Bread , 60, 65 -> add no stock (none) -> 0 -> make no sales (none) -> 0
+
+Bread , 60, 65 -> add 100 of stock on it (100) -> make no sales (none) - 0
+
+zero and none
+
+zero => 1000 - 1000
