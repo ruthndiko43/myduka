@@ -1,8 +1,16 @@
-from flask import Flask, render_template,request,redirect,url_for
-from database import get_products,get_sales,get_stock,insert_products,check_available_stock,insert_sales
-
+from flask import Flask, render_template,request,redirect,url_for,flash
+from database import get_products,get_sales,get_stock,insert_products,check_available_stock,insert_sales,check_user_exists,create_user
+from flask_bcrypt import Bcrypt
 #Flask Instance
 app = Flask(__name__)
+
+
+#Bcrypt instance with Flask app
+bcrypt = Bcrypt(app)
+
+
+app.secret_key ="fvhkbfvbvhfdjvefhbbhvf"
+
 
 #index route
 @app.route('/')
@@ -20,13 +28,13 @@ def products():
 @app.route('/add_products',methods=['GET','POST'])
 def add_products():
     if request.method == 'POST':
-        product_name = request.form['p_name']
+        product_name = request.form['p_price']
         buying_price = request.form['b_price']
         selling_price = request.form['s_price']
 
         new_product = (product_name,buying_price,selling_price)
         insert_products(new_product)
-        print("product added successfully") 
+        flash("product added successfully",'success') 
 
     return redirect(url_for('products'))
 
@@ -50,6 +58,7 @@ def make_sale():
 
         if available_stock < float(quantity):
             print("Insufficient stock,add more")
+            return redirect(url_for('sales'))
 
         insert_sales(new_sale)
         print("Sale added successfully")
@@ -71,8 +80,24 @@ def dashboard():
     return render_template('dashboard.html')
 
 
-@app.route('/register')
+@app.route('/register',methods=['GET','POST'])
 def register():
+    if request.method == 'POST':
+        full_name = request.form['full_name']
+        email = request.form['email']
+        phone_number = request.form['phone_number']
+        password = request.form['password']
+
+        existing_user = check_user_exists(email)
+        if not existing_user:
+            hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+            new_user = (full_name,email,phone_number,hashed_password)
+            create_user(new_user)
+            flash("User created successfully",'success')
+            return redirect(url_for('login'))
+        else:
+            flash("User already exists,please login instead",'danger')
+            
     return render_template('register.html')
 
 
