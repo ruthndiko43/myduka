@@ -221,4 +221,21 @@ plain text password + salt => hash it with an encryption algorithm (bcrypt)
 
 pip install flask_bcrypt
 
+17/6/2026
 Hashing history
+
+
+id | full_name | email | phone_number | password
+----+-----------+------------------+--------------+-------------------------------------------------------------- 1 | Jane | janedoe@mail.com | 0774981928 | $2b$12$qkfAKQKQvaXYvPMG71b/cOnYvk/p2OPKcPMPcVVuhO.NoAx40vDfG (1 row)
+
+User login 1.User is provided with a form to login with email & password 2.User fills form and submits it to login route 3.Flask extracts login creds using request object 4.Use email to confirm that the user is a registered 5.If user doesnt exist: -> alert them to register instead 6.if user exists: -> confirm that user pasword is correct if password is correct: - user is redirected to login if password is incorrect: -alert user to attempt another password input
+
+1234
+
+(1, 'Jane', 'janedoe@mail.com', '0774981928', '$2b$12$qkfAKQKQvaXYvPMG71b/cOnYvk/p2OPKcPMPcVVuhO.NoAx40vDfG')
+
+1234 != $2b$12$qkfAKQKQvaXYvPMG71b/cOnYvk/p2OPKcPMPcVVuhO.NoAx40vDfG
+
+hashing is a one way function
+
+session -> data used by the server to remember an authenticated user session data will be stored in a cookie and signed using your secret key session stores data in key value pair format

@@ -109,7 +109,7 @@ def check_available_stock(pid):
 
 
 def check_user_exists(email):
-    cur.execute("select * from users where email = %s",(email,))
+    cur.execute("select * from users where users.email = %s",(email,))
     user = cur.fetchone()
     return user
 
@@ -117,3 +117,7 @@ def check_user_exists(email):
 def create_user(user_details):
     cur.execute("insert into users(full_name,email,phone_number,password)values(%s,%s,%s,%s)",user_details)
     conn.commit()
+
+
+user= check_user_exists('ruthndiko43@gmail.com')
+print(user[-1])
