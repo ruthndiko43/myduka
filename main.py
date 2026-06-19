@@ -1,5 +1,5 @@
 from flask import Flask, render_template,request,redirect,url_for,flash,session
-from database import get_products,get_sales,get_stock,insert_products,check_available_stock,insert_sales,check_user_exists,create_user
+from database import get_products,get_sales,get_stock,insert_products,check_available_stock,insert_sales,check_user_exists,create_user,profit_per_day,sales_per_day,profit_per_product
 from flask_bcrypt import Bcrypt
 from functools import wraps 
 
@@ -91,7 +91,28 @@ def stock():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    product_sales=sales_per_day()
+    product_profit=profit_per_product()
+    
+    
+    daily_sales=sales_per_day()
+    dail_profit=profit_per_day()
+    
+    #product data
+    product_name=[i[0] for i in product_sales]
+    prod_profit=[i[0] for i in product_profit]
+    prod_sales=[float(i[0]) for i in product_sales]
+    
+    #days data
+    dates=[string(i[0]) for i in daily_sales]
+    day_sales=[float(i[0]) for i in daily_sales]
+    day_profit=[float(i[0]) for i in dail_profit]
+    
+    
+    return render_template('dashboard.html',
+                           product_names=product_name,prod_profit=prod_profit,prod_sales=prod_sales,
+                           dates=dates,day_sales=day_sales,day_profit=day_profit
+    )
 
 
 @app.route('/register',methods=['GET','POST'])
@@ -136,7 +157,10 @@ def login():
     
     return render_template('login.html')
 
-
+@app.route('/logout')
+def logout():
+    flash("logged out successful",'success')
+    return redirect(url_for('login'))
 
 #run your application
 app.run(debug=True)
