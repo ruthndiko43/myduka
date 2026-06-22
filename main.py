@@ -1,5 +1,5 @@
 from flask import Flask, render_template,request,redirect,url_for,flash,session
-from database import get_products,get_sales,get_stock,insert_products,check_available_stock,insert_sales,check_user_exists,create_user,profit_per_day,sales_per_day,profit_per_product
+from database import get_products,get_sales,get_stock,insert_products,check_available_stock,insert_sales,check_user_exists,create_user,sales_per_day,sales_per_product,profit_per_day,profit_per_product
 from flask_bcrypt import Bcrypt
 from functools import wraps 
 
@@ -31,7 +31,7 @@ def login_required(f):
 #products route
 @app.route("/products")
 @login_required
-def products(x,y):
+def products():
     products_data = get_products()
     return render_template('products.html',products_data=products_data)
 
@@ -39,7 +39,7 @@ def products(x,y):
 @app.route('/add_products',methods=['GET','POST'])
 def add_products():
     if request.method == 'POST':
-        product_name = request.form['p_name']
+        product_name = request.form['p_price']
         buying_price = request.form['b_price']
         selling_price = request.form['s_price']
 
@@ -91,28 +91,27 @@ def stock():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    product_sales=sales_per_day()
-    product_profit=profit_per_product()
-    
-    
-    daily_sales=sales_per_day()
-    dail_profit=profit_per_day()
-    
+    product_sales = sales_per_product()
+    product_profit = profit_per_product()
+
+    daily_sales = sales_per_day()
+    daily_profit = profit_per_day()
+
     #product data
-    product_name=[i[0] for i in product_sales]
-    prod_profit=[i[0] for i in product_profit]
-    prod_sales=[float(i[0]) for i in product_sales]
-    
-    #days data
-    dates=[string(i[0]) for i in daily_sales]
-    day_sales=[float(i[0]) for i in daily_sales]
-    day_profit=[float(i[0]) for i in dail_profit]
-    
-    
+    product_names = [ i[0] for i in product_sales ]
+    prod_profit = [ float(i[1]) for i in product_profit  ]
+    prod_sales = [ float(i[1]) for i in product_sales ]
+
+
+    #days data 
+    dates = [ str(i[0]) for i in daily_sales ]
+    day_sales = [ float(i[1]) for i in daily_sales ]
+    day_profit = [ float(i[1]) for i in daily_profit ]
+
     return render_template('dashboard.html',
-                           product_names=product_name,prod_profit=prod_profit,prod_sales=prod_sales,
-                           dates=dates,day_sales=day_sales,day_profit=day_profit
-    )
+            product_names = product_names,prod_profit = prod_profit , prod_sales = prod_sales,
+            dates = dates , day_sales = day_sales, day_profit = day_profit 
+                           )
 
 
 @app.route('/register',methods=['GET','POST'])
@@ -157,10 +156,16 @@ def login():
     
     return render_template('login.html')
 
+
+
 @app.route('/logout')
 def logout():
-    flash("logged out successful",'success')
+    session.pop('email',None)
+    flash("Logged out successfully",'success')
     return redirect(url_for('login'))
+
+
+
 
 #run your application
 app.run(debug=True)

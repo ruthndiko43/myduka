@@ -239,3 +239,14 @@ User login 1.User is provided with a form to login with email & password 2.User 
 hashing is a one way function
 
 session -> data used by the server to remember an authenticated user session data will be stored in a cookie and signed using your secret key session stores data in key value pair format
+
+
+DATA VISUALIZATION -> represent data using visual aids: -> sales and profit per product -> sales and profit per day
+
+Types of visual tools -> bar charts, line charts, pie charts, doughnut chart, frequency polygons, histograms, heatmaps, radar charts, polar area charts
+
+bar charts -> sales and profit per product -> x axis : product names -> y axis : sales and profit data line charts -> sales and profit per day -> x axis : dates -> y axis : sales and profit data
+
+project proposal 1.Idea -> what you want to build 2.Justification -> what problem is your software meant to solve 3.List all database tables to be created 4.Create an ERD of the above tables showing clear relationships
+
+Few concepts to look at 1.Python's virtual environment 2.Revisit OOP concepts - classes , objects, methods 3.Flask SQLalchemy - ORM -> better way to crgeate and manipulate db structures 4.Context Processor 5.Better login with Flask Login 6.Mailing service with flask mail
